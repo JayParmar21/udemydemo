@@ -1,0 +1,17 @@
+.navbar{
+    background:linen;
+    height:70px;
+}
+.sbtn{
+    background-color: orange;
+    background: red;
+}
+.category{
+    color: black;
+    size: 5px;
+}
+/* .dp{
+    background-color: beige;
+    border-radius: 5%;
+    color: black;
+} */
