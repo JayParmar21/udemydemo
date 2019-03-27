@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-//import rootReducer from './reducer/loginred';
+import rootReducer from './reducer/loginredu';
 
 const composeEnhancer =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
@@ -10,24 +10,28 @@ const enhancer = composeEnhancer(
     applyMiddleware(thunk)
 );
 
-const token = localStorage.getItem("token");
-const userId = localStorage.getItem("userId");
-const Role = localStorage.getItem("role");
-const Name = localStorage.getItem("Name");
+const name = localStorage.getItem("name");
+const id = localStorage.getItem("id");
+const email = localStorage.getItem("email");
+const dob = localStorage.getItem("dob");
+const password = localStorage.getItem("password");
 const INITIAL_STATE = {
     auth: {
-        token: "",
-        Role:'',
-        userId: '',
-        Name:""
+        dob: '',
+        email: '',
+        id: '',
+        name: '',
+        password:''
     }
 }
 
-if (token && userId && Role) {
-    INITIAL_STATE.auth.token = token;
-    INITIAL_STATE.auth.userId = userId;
-    INITIAL_STATE.auth.Role = Role;
-    INITIAL_STATE.auth.Name = Name;
+if ( id && email) {
+    INITIAL_STATE.auth.name = name;
+    INITIAL_STATE.auth.id = id;
+    INITIAL_STATE.auth.email = email;
+    INITIAL_STATE.auth.dob = dob;
+    INITIAL_STATE.auth.password = password;
+
 }
 
-export default createStore(INITIAL_STATE, enhancer);
+export default createStore(rootReducer, INITIAL_STATE, enhancer);

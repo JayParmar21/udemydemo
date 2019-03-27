@@ -11,14 +11,25 @@ const tlogo = require('../../logo/trolly.png')
 
 class Header extends React.Component {
     constructor(props) {
-        super(props);        
+        super(props);
         this.state = {
+            user: {
+                name: '',
+                email: '',
+                dob: '',
+                password: ''
+            },
             isOpen: false,
             modal: false,
-            modal1:false
+            modal1: false
         };
         this.toggle = this.toggle.bind(this);
         this.toggle1 = this.toggle1.bind(this);
+    }
+    change = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        this.setState({ user: { ...this.state.user, [name]: value } })
     }
     toggle() {
         this.setState(prevState => ({
@@ -31,6 +42,19 @@ class Header extends React.Component {
             //isOpen: !this.state.isOpen,
             modal1: !prevState.modal1
         }));
+    }
+    handleClick = (e) => {
+        e.preventDefault();
+        this.props.
+        this.setState({
+            user: {
+                name: '',
+                email: '',
+                dob: '',
+                password: ''
+            }
+        })
+        this.toggle()
     }
     render() {
         return (
@@ -67,23 +91,24 @@ class Header extends React.Component {
                         <Form>
                             <FormGroup>
                                 <Label >Name</Label>
-                                <Input type="text" name="name" id="name" placeholder="Eneter the name" />
+                                <Input type="text" name="name" id="name" value={this.state.user.name} placeholder="Eneter the name" onChange={this.change.bind(this)} />
                             </FormGroup>
                             <FormGroup>
                                 <Label >Email</Label>
-                                <Input type="text" name="email" id="email" placeholder="email" />
+                                <Input type="text" name="email" id="email" value={this.state.user.email} placeholder="email" onChange={this.change.bind(this)} />
                             </FormGroup>
                             <FormGroup>
                                 <Label >Date Of Birth</Label>
-                                <Input type="date" name="datetime" id="exampleDatetime" placeholder="Date Of Birth" />                            </FormGroup>
+                                <Input type="date" name="dob" id="Dob" value={this.state.user.dob} placeholder="Date Of Birth" onChange={this.change.bind(this)} />
+                            </FormGroup>
                             <FormGroup>
                                 <Label >Password</Label>
-                                <Input type="text" name="password" id="password" placeholder="Enter the password" />
+                                <Input type="text" name="password" id="password" value={this.state.user.password} placeholder="Enter the password" onChange={this.change.bind(this)} />
                             </FormGroup>
                         </Form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>SUBMIT</Button>{' '}
+                        <Button color="primary" onClick={this.handleClick.bind(this)}>Sign Up</Button>{' '}
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
@@ -113,4 +138,16 @@ class Header extends React.Component {
     }
 }
 
-export default Header
+const mapStateToProps = (state) => {
+    const { Data } = state
+    return {
+        signup: Data
+    }
+};
+const mapDispatchToProps = dispatch => ({
+    actions: {
+        signup: bindActionCreators(actions, dispatch)
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(signup)

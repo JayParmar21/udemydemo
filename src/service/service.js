@@ -1,7 +1,7 @@
 import base from './base'
 
 export function getData(data){
-    return base.get('/'+data);
+    return base.get('/',data);
 }
 
 export function addData(data){
