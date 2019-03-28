@@ -45,13 +45,14 @@ class home extends Component {
     }
     show(e) {
         e.preventDefault()
+        debugger
         this.props.actions.home.loginUser(this.state.user)
         this.toggle()
     }
     render() {
         return (
             <div>
-                <Navbar className="navbar" light expand="md">
+                <Navbar className="navbar" light expand="md" style={{height:'70px'}}>
                     <NavbarBrand href="/"><img src={ulogo} alt="ulogo" style={{ height: '100px', width: '150px' }}></img></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Input type="search" placeholder="Search for Anything" style={{ width: "450px", marginLeft: "80px" }}></Input><i class="material-icons" style={{ width: "20px", marginLeft: "-30px", color: "black" }}>search</i>

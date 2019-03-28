@@ -2,6 +2,7 @@ import * as authService from '../service/service';
 import { LOGIN_SUCCESSFUL, FAILED } from '../reducer/loginredu';
 
 export const loginUser = (credentials) => {
+    debugger
     return (dispatch) => {
         authService.login(credentials)
             .then((response) => {
